@@ -14,6 +14,7 @@
             color: #e0f2fe;
             overflow-x: hidden;
             position: relative;
+            font-family: 'Inter', sans-serif;
         }
         
         body::before {
@@ -60,68 +61,90 @@
         }
         
         .review-card:hover {
-            transform: translateY(-15px) scale(1.04);
-            box-shadow: 0 30px 60px -15px rgb(0 245 255 / 0.25);
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px -10px rgb(0 245 255 / 0.25);
             border-color: #00f5ff;
         }
 
         .golden-star {
             color: #fbbf24;
-            filter: drop-shadow(0 0 10px #fbbf24);
+            filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.6));
         }
 
         .avatar {
             background: linear-gradient(135deg, #22d3ee, #a855f7);
-            box-shadow: 0 0 30px rgba(0, 245, 255, 0.6);
-            font-size: 28px;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
         }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #00f5ff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-text-anim {
+            background: linear-gradient(90deg, #00f5ff, #a855f7, #ff007f, #00f5ff);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 3s linear infinite;
+            font-weight: 800;
+        }
+
+        @keyframes textShine {
+            0% { background-position: 0% center; }
+            100% { background-position: 300% center; }
+        }
     </style>
 </head>
-<body class="min-h-screen pb-20">
+<body class="min-h-screen pb-16">
 
     <!-- Hero + Stats -->
-    <div class="hero-bg pt-12 pb-10 relative">
+    <div class="hero-bg pt-10 pb-8 relative">
         <div class="max-w-6xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-2 rounded-3xl border border-white/10 mb-6">
-                <i class="fa-solid fa-shield-halved text-cyan-400 text-2xl"></i>
-                <span class="font-bold text-xl tracking-widest text-white">CYBER TEAM HELP</span>
+            <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md px-5 py-2 rounded-full border border-white/10 mb-5">
+                <i class="fa-solid fa-shield-halved text-cyan-400 text-lg"></i>
+                <span class="font-bold text-sm tracking-widest text-white">CYBER TEAM HELP</span>
             </div>
-            <h1 class="text-5xl md:text-6xl font-bold mb-4 text-white">CTH Review</h1>
-            <p class="text-xl md:text-2xl text-sky-200">গ্রাহকদের সত্য অনুভূতি ও টেকনিক্যাল সাফল্যের লাইভ ড্যাশবোর্ড</p>
+            <h1 class="text-4xl md:text-5xl font-bold mb-3 text-white">CTH Review</h1>
+            <p class="text-lg md:text-xl text-sky-200">গ্রাহকদের সত্য অনুভূতি ও টেকনিক্যাল সাফল্যের লাইভ ড্যাশবোর্ড</p>
         </div>
 
-        <div class="max-w-4xl mx-auto px-6 mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="stat-card rounded-3xl p-8 text-center">
-                <div class="text-5xl font-bold text-cyan-400">৫০,০০০+</div>
-                <p class="text-slate-300 mt-3">মোট সফল সেবা</p>
+        <div class="max-w-4xl mx-auto px-6 mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div class="stat-card rounded-2xl p-6 text-center">
+                <div class="text-4xl font-bold text-cyan-400">৫০,০০০+</div>
+                <p class="text-slate-300 mt-2 text-sm">মোট সফল সেবা</p>
             </div>
-            <div class="stat-card rounded-3xl p-8 text-center">
-                <div class="text-5xl font-bold text-cyan-400">২০২০</div>
-                <p class="text-slate-300 mt-3">থেকে সফলতার সাথে কর্মরত</p>
+            <div class="stat-card rounded-2xl p-6 text-center">
+                <div class="text-4xl font-bold text-cyan-400">২০২০</div>
+                <p class="text-slate-300 mt-2 text-sm">থেকে সফলতার সাথে কর্মরত</p>
             </div>
-            <div class="stat-card rounded-3xl p-8 text-center">
-                <div class="text-5xl font-bold text-cyan-400">১০০%</div>
-                <p class="text-slate-300 mt-3">সুরক্ষিত ও বিশ্বস্ত সমাধান</p>
+            <div class="stat-card rounded-2xl p-6 text-center">
+                <div class="text-4xl font-bold text-cyan-400">১০০%</div>
+                <p class="text-slate-300 mt-2 text-sm">সুরক্ষিত ও বিশ্বস্ত সমাধান</p>
             </div>
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 -mt-6 relative z-10">
-        <div class="flex flex-wrap gap-3 justify-center mb-12">
-            <button onclick="filterReviews('all')" class="px-7 py-3 rounded-3xl glass text-sm font-medium">সব রিভিউ</button>
-            <button onclick="filterReviews('fb')" class="px-7 py-3 rounded-3xl glass text-sm font-medium">ফেসবুক</button>
-            <button onclick="filterReviews('insta')" class="px-7 py-3 rounded-3xl glass text-sm font-medium">ইনস্টাগ্রাম</button>
-            <button onclick="filterReviews('wa')" class="px-7 py-3 rounded-3xl glass text-sm font-medium">হোয়াটসঅ্যাপ</button>
-            <button onclick="filterReviews('imo')" class="px-7 py-3 rounded-3xl glass text-sm font-medium">ইমু</button>
+    <div class="max-w-7xl mx-auto px-6 -mt-4 relative z-10">
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-2 justify-center mb-10">
+            <button onclick="filterReviews('all')" class="px-5 py-2.5 rounded-full glass text-xs font-medium hover:border-cyan-400 transition">সব রিভিউ</button>
+            <button onclick="filterReviews('fb')" class="px-5 py-2.5 rounded-full glass text-xs font-medium hover:border-cyan-400 transition">ফেসবুক</button>
+            <button onclick="filterReviews('insta')" class="px-5 py-2.5 rounded-full glass text-xs font-medium hover:border-cyan-400 transition">ইনস্টাগ্রাম</button>
+            <button onclick="filterReviews('wa')" class="px-5 py-2.5 rounded-full glass text-xs font-medium hover:border-cyan-400 transition">হোয়াটসঅ্যাপ</button>
+            <button onclick="filterReviews('imo')" class="px-5 py-2.5 rounded-full glass text-xs font-medium hover:border-cyan-400 transition">ইমু</button>
         </div>
 
-        <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        <!-- Reviews Container -->
+        <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-        <div class="text-center mt-16">
-            <button id="loadMoreBtn" onclick="loadMoreReviews()" class="px-12 py-6 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold text-lg rounded-3xl flex items-center gap-4 mx-auto">
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+            <button id="loadMoreBtn" onclick="loadMoreReviews()" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold text-sm rounded-full flex items-center gap-3 mx-auto hover:scale-105 transition-transform shadow-lg shadow-cyan-500/30">
                 <i id="btnIcon" class="fa-solid fa-arrow-down"></i>
                 <span id="btnText">আরও রিভিউ দেখুন</span>
             </button>
@@ -129,35 +152,35 @@
     </div>
 
     <!-- ফুটার -->
-    <footer class="mt-24 py-16 border-t border-white/10 bg-black/40">
+    <footer class="mt-20 py-12 border-t border-white/10 bg-black/40">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold mb-2 gradient-text">CTH Review</h2>
-            <p class="text-slate-400 mb-8">সাইবার সমস্যার বিশ্বস্ত সমাধান</p>
+            <h2 class="text-2xl font-bold mb-2 gradient-text">CTH Review</h2>
+            <p class="text-slate-400 text-sm mb-6">সাইবার সমস্যার বিশ্বস্ত সমাধান</p>
             
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <a href="https://wa.me/8801721863816" target="_blank" class="flex items-center gap-3 bg-green-600 hover:bg-green-500 transition-all px-8 py-4 rounded-2xl text-lg font-medium">
-                    <i class="fa-brands fa-whatsapp text-3xl"></i>
-                    <div>
-                        <span class="block text-sm opacity-75">হোয়াটসঅ্যাপ</span>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://wa.me/8801721863816" target="_blank" class="flex items-center gap-3 bg-green-600 hover:bg-green-500 transition-all px-6 py-3 rounded-xl text-base font-medium shadow-md shadow-green-600/30">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <div class="text-left">
+                        <span class="block text-xs opacity-75">হোয়াটসঅ্যাপ</span>
                         <span class="text-sm">যোগাযোগ করুন</span>
                     </div>
                 </a>
                 
-                <a href="https://www.facebook.com/share/19232SUFuj/" target="_blank" class="flex items-center gap-3 bg-blue-600 hover:bg-blue-500 transition-all px-8 py-4 rounded-2xl text-lg font-medium">
-                    <i class="fa-brands fa-facebook text-3xl"></i>
-                    <div>
-                        <span class="block text-sm opacity-75">ফেসবুক পেজ</span>
+                <a href="https://www.facebook.com/share/19232SUFuj/" target="_blank" class="flex items-center gap-3 bg-blue-600 hover:bg-blue-500 transition-all px-6 py-3 rounded-xl text-base font-medium shadow-md shadow-blue-600/30">
+                    <i class="fa-brands fa-facebook text-2xl"></i>
+                    <div class="text-left">
+                        <span class="block text-xs opacity-75">ফেসবুক পেজ</span>
                         <span class="text-sm">ভিজিট করুন</span>
                     </div>
                 </a>
             </div>
 
-            <div class="mt-12 text-slate-400">
-                <p class="text-lg">Developer: <span class="gradient-text">SHADOW JOKER</span></p>
-                <p class="mt-1">Admin: <span class="text-cyan-400">Jisan Ahmed</span></p>
+            <div class="mt-10 text-slate-400 text-sm">
+                <p>Developer: <span class="gradient-text-anim text-xl ml-1">SHADOW JOKER</span></p>
+                <p class="mt-1">Admin: <span class="text-cyan-400 font-medium">Jisan Ahmed</span></p>
             </div>
 
-            <div class="mt-8 text-xs text-slate-500">
+            <div class="mt-6 text-[11px] text-slate-500">
                 © ২০২০ - ২০২৬ | সর্বস্বত্ব সংরক্ষিত
             </div>
         </div>
@@ -165,67 +188,102 @@
 
     <!-- Review Modal -->
     <div id="reviewModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-xl flex items-center justify-center z-50">
-        <div class="glass max-w-lg w-full mx-4 rounded-3xl p-8">
-            <div class="flex justify-end mb-4">
-                <button onclick="closeModal()" class="text-4xl text-slate-400 hover:text-white">×</button>
+        <div class="glass max-w-lg w-full mx-4 rounded-2xl p-6 relative">
+            <div class="absolute top-4 right-4">
+                <button onclick="closeModal()" class="text-3xl text-slate-400 hover:text-white transition-colors">&times;</button>
             </div>
-            <div id="modalContent"></div>
+            <div id="modalContent" class="mt-4 text-center"></div>
         </div>
     </div>
 
     <script>
-        // ১০০০+ নাম
-        const boyNames = ["আরিফ আহমেদ","মাহমুদ হোসেন","রাহাত চৌধুরী","ফাহিম রহমান","ইমতিয়াজ মিয়া","রাকিব শেখ","সাইফুল ইসলাম","তানভীর হোসেন","শাহরিয়ার খান","জুবায়ের আহমেদ","তৌহিদ রহমান","আব্দুল্লাহ খান","রিয়াজ হোসেন","সুমন আক্তার","নাফিস আহমেদ"];
-        const girlNames = ["সাদিয়া খান","নুসরাত জাহান","তানিয়া ইসলাম","সুমাইয়া আক্তার","নাজনীন সুলতানা","আফিয়া মল্লিক","মেহেরিন তাসনিম","লামিয়া রহমান","প্রিয়া সরকার","আনিকা হোসেন","সাবরিনা খান","ফারিয়া আক্তার","মাহিয়া ইসলাম","নাফিসা চৌধুরী","তাসনিম হোসেন"];
+        // খাঁটি বাংলাদেশি নামের ডাটাবেস (ছেলে ও মেয়ে আলাদা করা হলো)
+        
+        // ছেলেদের নাম (বাংলা)
+        const bnBoyFirst = ["আরিফ", "মাহমুদ", "রাহাত", "ফাহিম", "ইমতিয়াজ", "রাকিব", "সাইফুল", "তানভীর", "শাহরিয়ার", "জুবায়ের", "তৌহিদ", "আব্দুল্লাহ", "রিয়াজ", "সুমন", "নাফিস", "মেহেবুব", "জিসান", "শফিক", "রফিক", "জব্বার", "সালাম", "তারেক", "হাবিব", "হাসান", "কামাল", "জামাল", "রনি", "জনি", "সজীব", "শান্ত"];
+        const bnBoyLast = ["আহমেদ", "হোসেন", "চৌধুরী", "রহমান", "মিয়া", "শেখ", "ইসলাম", "খান", "সরকার", "শিকদার", "মোল্লা", "তালুকদার", "হাওলাদার", "কাজী", "খন্দকার"];
 
-        let namePool = [];
-        for (let i = 0; i < 1000; i++) {
-            if (Math.random() > 0.5) {
-                const name = boyNames[Math.floor(Math.random() * boyNames.length)];
-                namePool.push({ display: name, emoji: "👨‍🦱" });
-            } else {
-                const name = girlNames[Math.floor(Math.random() * girlNames.length)];
-                namePool.push({ display: name, emoji: "👩‍🦰" });
+        // মেয়েদের নাম (বাংলা)
+        const bnGirlFirst = ["সাদিয়া", "নুসরাত", "তানিয়া", "সুমাইয়া", "নাজনীন", "আফিয়া", "মেহেরিন", "লামিয়া", "প্রিয়া", "আনিকা", "সাবরিনা", "ফারিয়া", "মাহিয়া", "রুমানা", "ফারহানা", "তাসনিম", "মিম", "জেসমিন", "রিয়া", "নিপা", "তিশা", "আশা", "নদী", "বৃষ্টি", "মেঘলা", "দোলা", "সুমি", "রুমি", "ঝুমা", "রত্না"];
+        const bnGirlLast = ["আক্তার", "খাতুন", "সুলতানা", "বেগম", "বানু", "ইসলাম", "রহমান", "চৌধুরী"];
+
+        // ছেলেদের নাম (ইংরেজি)
+        const enBoyFirst = ["Arif", "Mahmud", "Rahat", "Fahim", "Imtiaz", "Rakib", "Saiful", "Tanvir", "Shahriar", "Jubayer", "Touhid", "Abdullah", "Riyaz", "Sumon", "Nafis", "Mehebub", "Jisan", "Shafiq", "Rafiq", "Jabbar", "Salam", "Tarek", "Habib", "Hasan", "Kamal", "Jamal", "Roni", "Joni", "Sajib", "Shanto"];
+        const enBoyLast = ["Ahmed", "Hossain", "Chowdhury", "Rahman", "Mia", "Sheikh", "Islam", "Khan", "Sarkar", "Sikder", "Molla", "Talukder", "Howlader", "Kazi", "Khondokar"];
+
+        // মেয়েদের নাম (ইংরেজি)
+        const enGirlFirst = ["Sadiya", "Nusrat", "Tania", "Sumaiya", "Naznin", "Afia", "Meherin", "Lamia", "Priya", "Anika", "Sabrina", "Faria", "Mahiya", "Rumana", "Farhana", "Tasnim", "Mim", "Jesmin", "Riya", "Nipa", "Tisha", "Asha", "Nodi", "Brishti", "Meghla", "Dola", "Sumi", "Rumi", "Jhuma", "Ratna"];
+        const enGirlLast = ["Akter", "Khatun", "Sultana", "Begum", "Banu", "Islam", "Rahman", "Chowdhury"];
+
+        let bengaliNames = [];
+        let englishNames = [];
+
+        // বাংলা নাম জেনারেট (ছেলে + মেয়ে)
+        bnBoyFirst.forEach(f => bnBoyLast.forEach(l => bengaliNames.push(f + " " + l)));
+        bnGirlFirst.forEach(f => bnGirlLast.forEach(l => bengaliNames.push(f + " " + l)));
+
+        // ইংরেজি নাম জেনারেট (ছেলে + মেয়ে)
+        enBoyFirst.forEach(f => enBoyLast.forEach(l => englishNames.push(f + " " + l)));
+        enGirlFirst.forEach(f => enGirlLast.forEach(l => englishNames.push(f + " " + l)));
+
+        // শাফেল ফাংশন (যাতে নাম এলোমেলো আসে)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
             }
         }
 
-        let availableNames = [...namePool];
+        shuffleArray(bengaliNames);
+        shuffleArray(englishNames);
+
+        let useBengaliNext = true; // 1st name will be Bengali
+
+        function getNextName() {
+            let nameToReturn = "";
+            if (useBengaliNext) {
+                useBengaliNext = false;
+                nameToReturn = bengaliNames.length > 0 ? bengaliNames.pop() : "ইউজার " + Math.floor(Math.random()*1000);
+            } else {
+                useBengaliNext = true;
+                nameToReturn = englishNames.length > 0 ? englishNames.pop() : "User " + Math.floor(Math.random()*1000);
+            }
+            return nameToReturn;
+        }
 
         const reviewTemplates = [
-            { category: "fb", service: "ফেসবুক রিকভারি", text: "আমার হ্যাক হওয়া ফেসবুক আইডি ৩ দিনের মধ্যে পুরোপুরি ফিরে পেয়েছি। সাপোর্ট টিম অসাধারণ।" },
-            { category: "fb", service: "ফেসবুক আইডি ডিজেবল উদ্ধার", text: "ফেসবুক আইডি ডিজেবল হয়ে গিয়েছিল। CTH টিম খুব দ্রুত উদ্ধার করে দিয়েছে।" },
-            { category: "fb", service: "ফেসবুক আইডি অ্যাক্সেস", text: "ফেসবুক আইডিতে অ্যাক্সেস হারিয়ে ফেলেছিলাম। টিম সফলভাবে অ্যাক্সেস ফিরিয়ে দিয়েছে।" },
-            { category: "insta", service: "ইনস্টাগ্রাম রিকভারি", text: "ইনস্টাগ্রাম অ্যাকাউন্ট ডিজেবল হয়ে গিয়েছিল। মাত্র ২৪ ঘণ্টায় ফিরে পেয়েছি।" },
-            { category: "wa", service: "হোয়াটসঅ্যাপ অ্যাকাউন্ট অ্যাক্সেস", text: "হোয়াটসঅ্যাপ অ্যাকাউন্টে অ্যাক্সেস হারিয়ে ফেলেছিলাম। খুব সুন্দরভাবে ফিরিয়ে দিয়েছে।" },
-            { category: "imo", service: "ইমু অ্যাকাউন্ট অ্যাক্সেস", text: "ইমু অ্যাকাউন্ট হ্যাক হয়ে গিয়েছিল। দ্রুত অ্যাক্সেস উদ্ধার করে দিয়েছে।" }
+            { category: "fb", service: "ফেসবুক রিকভারি", text: "আমার হ্যাক হওয়া ফেসবুক আইডি ৩ দিনের মধ্যে পুরোপুরি ফিরে পেয়েছি। সাপোর্ট টিম অসাধারণ কাজ করেছে।" },
+            { category: "fb", service: "ফেসবুক আইডি ডিজেবল উদ্ধার", text: "আমার পুরনো ফেসবুক আইডি ডিজেবল হয়ে গিয়েছিল। CTH টিম খুব দ্রুত উদ্ধার করে দিয়েছে।" },
+            { category: "fb", service: "ফেসবুক আইডি অ্যাক্সেস", text: "লগইন এপ্রুভাল আটকে ছিল, আইডিতে অ্যাক্সেস হারিয়ে ফেলেছিলাম। টিম সফলভাবে অ্যাক্সেস ফিরিয়ে দিয়েছে।" },
+            { category: "insta", service: "ইনস্টাগ্রাম রিকভারি", text: "ইনস্টাগ্রাম অ্যাকাউন্ট ডিজেবল হয়ে গিয়েছিল। বিশ্বাসই করিনি মাত্র ২৪ ঘণ্টায় ফিরে পাব।" },
+            { category: "wa", service: "হোয়াটসঅ্যাপ অ্যাকাউন্ট অ্যাক্সেস", text: "হোয়াটসঅ্যাপ ব্যান হয়ে গিয়েছিল। খুব সুন্দরভাবে তারা আনব্যান করে ফিরিয়ে দিয়েছে।" },
+            { category: "imo", service: "ইমু অ্যাকাউন্ট অ্যাক্সেস", text: "ইমু অ্যাকাউন্ট হ্যাক হয়ে অন্য কেউ চালাচ্ছিল। দ্রুত তারা অ্যাকাউন্ট উদ্ধার করে দিয়েছে।" }
         ];
 
-        const times = ["১ দিন আগে", "২ দিন আগে", "৩ দিন আগে", "৫ দিন আগে", "১ সপ্তাহ আগে"];
+        const times = ["১ দিন আগে", "২ দিন আগে", "৩ দিন আগে", "৫ দিন আগে", "১ সপ্তাহ আগে", "১২ ঘণ্টা আগে", "২ সপ্তাহ আগে"];
 
-        let generatedCount = 0;
         let currentFilter = 'all';
 
         function createReviewCard(review) {
-            if (availableNames.length === 0) availableNames = [...namePool];
-            const index = Math.floor(Math.random() * availableNames.length);
-            const person = availableNames[index];
-            availableNames.splice(index, 1);
+            const personName = getNextName(); // ইউনিক এবং সিরিয়াল করা নাম
 
             return `
-                <div class="review-card glass rounded-3xl p-8 border border-white/10 cursor-pointer" onclick="showReviewModal('\( {person.display}', ' \){review.service}', '${review.text}')">
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="flex items-center gap-4">
-                            <div class="avatar w-14 h-14 rounded-2xl shadow-inner">${person.emoji}</div>
+                <div class="review-card glass rounded-2xl p-5 border border-white/10 cursor-pointer" onclick="showReviewModal('${personName}', '${review.service}', '${review.text}')">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="avatar w-10 h-10 rounded-xl shadow-inner">
+                                <i class="fa-solid fa-user text-white/80 text-sm"></i>
+                            </div>
                             <div>
-                                <h4 class="font-semibold text-xl">${person.display}</h4>
-                                <p class="text-cyan-400 text-sm">${review.service}</p>
+                                <h4 class="font-semibold text-sm">${personName}</h4>
+                                <p class="text-cyan-400 text-[11px] mt-0.5">${review.service}</p>
                             </div>
                         </div>
-                        <div class="text-4xl golden-star">★★★★★</div>
+                        <div class="text-lg golden-star tracking-widest">★★★★★</div>
                     </div>
-                    <p class="text-slate-200 leading-relaxed mb-8">"${review.text}"</p>
-                    <div class="flex justify-between text-xs pt-6 border-t border-white/10">
-                        <span class="text-emerald-400">✅ ভেরিফাইড ক্লায়েন্ট</span>
+                    <p class="text-slate-300 leading-relaxed mb-5 text-xs">"${review.text}"</p>
+                    <div class="flex justify-between text-[10px] pt-3 border-t border-white/10">
+                        <span class="text-emerald-400"><i class="fa-solid fa-circle-check mr-1"></i> ভেরিফাইড ক্লায়েন্ট</span>
                         <span class="text-slate-400">${times[Math.floor(Math.random()*times.length)]}</span>
                     </div>
                 </div>
@@ -235,12 +293,20 @@
         function renderReviews(amount, filter = 'all') {
             const container = document.getElementById('reviewsContainer');
             let html = '';
+            
+            const filteredTemplates = filter === 'all' 
+                ? reviewTemplates 
+                : reviewTemplates.filter(r => r.category === filter);
+                
+            const templatesToUse = filteredTemplates.length > 0 ? filteredTemplates : reviewTemplates;
+
             for (let i = 0; i < amount; i++) {
-                const review = reviewTemplates[Math.floor(Math.random() * reviewTemplates.length)];
+                const review = templatesToUse[Math.floor(Math.random() * templatesToUse.length)];
                 html += createReviewCard(review);
-                generatedCount++;
             }
+            
             container.innerHTML += html;
+            
             setTimeout(() => {
                 document.querySelectorAll('.review-card:not(.visible)').forEach((card, i) => {
                     setTimeout(() => card.classList.add('visible'), i * 60);
@@ -265,19 +331,22 @@
         function filterReviews(filter) {
             currentFilter = filter;
             document.getElementById('reviewsContainer').innerHTML = '';
-            generatedCount = 0;
-            availableNames = [...namePool];
+            
+            document.querySelectorAll('.flex-wrap button').forEach(btn => {
+                btn.classList.remove('border-cyan-400', 'text-cyan-400');
+            });
+            event.target.classList.add('border-cyan-400', 'text-cyan-400');
+            
             renderReviews(12, filter);
         }
 
         function showReviewModal(name, service, text) {
             document.getElementById('modalContent').innerHTML = `
-                <div class="text-center">
-                    <div class="text-6xl mb-4 golden-star">★★★★★</div>
-                    <h3 class="text-2xl font-bold">${name}</h3>
-                    <p class="text-cyan-400">${service}</p>
-                    <p class="mt-6 text-lg">"${text}"</p>
-                </div>
+                <div class="text-4xl mb-3 golden-star tracking-widest">★★★★★</div>
+                <h3 class="text-xl font-bold text-white">${name}</h3>
+                <p class="text-cyan-400 text-sm mt-1">${service}</p>
+                <div class="w-12 h-1 bg-white/10 mx-auto my-4 rounded-full"></div>
+                <p class="text-sm text-slate-300 leading-relaxed italic">"${text}"</p>
             `;
             document.getElementById('reviewModal').classList.remove('hidden');
             document.getElementById('reviewModal').classList.add('flex');
@@ -288,7 +357,10 @@
             document.getElementById('reviewModal').classList.remove('flex');
         }
 
-        window.onload = () => renderReviews(12);
+        window.onload = () => {
+            renderReviews(12);
+            document.querySelector('.flex-wrap button').classList.add('border-cyan-400', 'text-cyan-400');
+        };
     </script>
 </body>
 </html>

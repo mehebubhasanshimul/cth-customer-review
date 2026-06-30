@@ -28,9 +28,14 @@
         }
         
         .glass {
-            background: rgba(15, 23, 42, 0.75);
+            background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(148, 163, 184, 0.15);
+        }
+        
+        .stat-card {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(0, 245, 255, 0.2);
         }
         
         .review-card {
@@ -79,59 +84,42 @@
             -webkit-text-fill-color: transparent;
             font-weight: 700;
         }
-        
-        .modal {
-            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        
-        @keyframes modalPop {
-            from { opacity: 0; transform: scale(0.7) translateY(50px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        
-        .glow-btn {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .glow-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 40%;
-            height: 200%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transform: skewX(-25deg);
-            animation: shine 4s infinite;
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-150%) skewX(-25deg); }
-            100% { transform: translateX(400%) skewX(-25deg); }
-        }
     </style>
 </head>
 <body class="min-h-screen pb-20">
 
-    <!-- Hero -->
-    <div id="hero" class="hero-bg pt-20 pb-16 relative">
+    <!-- Hero + Stats -->
+    <div class="hero-bg pt-12 pb-10 relative">
         <div class="max-w-6xl mx-auto px-6 text-center">
             <div class="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-2 rounded-3xl border border-white/10 mb-6">
                 <i class="fa-solid fa-shield-halved text-cyan-400 text-2xl"></i>
                 <span class="font-bold text-xl tracking-widest text-white">CYBER TEAM HELP</span>
             </div>
             
-            <h1 class="text-6xl md:text-7xl font-bold mb-6 neon-text">
-                CTH Review
-            </h1>
-            <p class="text-2xl md:text-3xl text-sky-200 font-light max-w-2xl mx-auto">
-                সত্যিকারের গ্রাহকদের অভিজ্ঞতা • লাইভ ড্যাশবোর্ড
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 neon-text">CTH Review</h1>
+            <p class="text-xl md:text-2xl text-sky-200 font-light max-w-2xl mx-auto">
+                গ্রাহকদের সত্য অনুভূতি ও টেকনিক্যাল সাফল্যের লাইভ ড্যাশবোর্ড
             </p>
+        </div>
+
+        <!-- Stats Section (আপনার ছবির মতো) -->
+        <div class="max-w-4xl mx-auto px-6 mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="stat-card rounded-3xl p-8 text-center">
+                <div class="text-5xl font-bold text-cyan-400">৫০,০০০+</div>
+                <p class="text-slate-300 mt-3">মোট সফল সেবা</p>
+            </div>
+            <div class="stat-card rounded-3xl p-8 text-center">
+                <div class="text-5xl font-bold text-cyan-400">২০২০</div>
+                <p class="text-slate-300 mt-3">থেকে সফলতার সাথে কর্মরত</p>
+            </div>
+            <div class="stat-card rounded-3xl p-8 text-center">
+                <div class="text-5xl font-bold text-cyan-400">১০০%</div>
+                <p class="text-slate-300 mt-3">সুরক্ষিত ও বিশ্বস্ত সমাধান</p>
+            </div>
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 -mt-8 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 -mt-6 relative z-10">
         <!-- Filters -->
         <div class="flex flex-wrap gap-3 justify-center mb-12">
             <button onclick="filterReviews('all')" class="filter-btn active px-7 py-3 rounded-3xl glass text-sm font-medium transition-all">সব রিভিউ</button>
@@ -205,7 +193,6 @@
     </div>
 
     <script>
-        // নাম লিস্ট (বাংলা ও ইংরেজি মিক্সড)
         const nameList = [
             { display: "আরিফ আহমেদ", emoji: "👨‍🦱" },
             { display: "Sadia Khan", emoji: "👩‍🦰" },
@@ -218,24 +205,21 @@
             { display: "ইমতিয়াজ মিয়া", emoji: "👨‍🦰" },
             { display: "Naznin Sultana", emoji: "👩‍🦳" },
             { display: "রাকিব শেখ", emoji: "👨🏾" },
-            { display: "Afia Mallik", emoji: "👩🏻‍🦰" },
-            { display: "সাইফুল ইসলাম", emoji: "🧔🏽" },
-            { display: "Meherin Tasnim", emoji: "👩🏼" }
+            { display: "Afia Mallik", emoji: "👩🏻‍🦰" }
         ];
 
         const reviewTemplates = [
             { category: "fb", service: "ফেসবুক রিকভারি", text: "আমার হ্যাক হওয়া ফেসবুক আইডি ৩ দিনের মধ্যে পুরোপুরি ফিরে পেয়েছি। সাপোর্ট টিম অসাধারণ।" },
-            { category: "fb", service: "ফেসবুক আইডি ডিজেবল উদ্ধার", text: "ফেসবুক আইডি ডিজেবল হয়ে গিয়েছিল। CTH টিম খুব দ্রুত উদ্ধার করে দিয়েছে। অসাধারণ কাজ।" },
+            { category: "fb", service: "ফেসবুক আইডি ডিজেবল উদ্ধার", text: "ফেসবুক আইডি ডিজেবল হয়ে গিয়েছিল। CTH টিম খুব দ্রুত উদ্ধার করে দিয়েছে।" },
             { category: "fb", service: "ফেসবুক আইডি অ্যাক্সেস", text: "ফেসবুক আইডিতে অ্যাক্সেস হারিয়ে ফেলেছিলাম। টিম সফলভাবে অ্যাক্সেস ফিরিয়ে দিয়েছে।" },
             { category: "insta", service: "ইনস্টাগ্রাম রিকভারি", text: "ইনস্টাগ্রাম অ্যাকাউন্ট ডিজেবল হয়ে গিয়েছিল। মাত্র ২৪ ঘণ্টায় ফিরে পেয়েছি।" },
             { category: "wa", service: "হোয়াটসঅ্যাপ অ্যাকাউন্ট অ্যাক্সেস", text: "হোয়াটসঅ্যাপ অ্যাকাউন্টে অ্যাক্সেস হারিয়ে ফেলেছিলাম। খুব সুন্দরভাবে ফিরিয়ে দিয়েছে।" },
             { category: "wa", service: "হোয়াটসঅ্যাপ সাপোর্ট", text: "হোয়াটসঅ্যাপ লগইন সমস্যা সমাধান করে দিয়েছে। অসাধারণ সার্ভিস।" },
             { category: "imo", service: "ইমু অ্যাকাউন্ট অ্যাক্সেস", text: "ইমু অ্যাকাউন্ট হ্যাক হয়ে গিয়েছিল। দ্রুত অ্যাক্সেস উদ্ধার করে দিয়েছে।" },
-            { category: "imo", service: "ইমু রিকভারি", text: "ইমু আইডি হ্যাক হয়ে টাকা চাওয়া হচ্ছিল। টিম খুব দ্রুত সমাধান করেছে।" },
-            { category: "fb", service: "হ্যারাসমেন্ট রিমুভ", text: "ফেক আইডি থেকে হ্যারাসমেন্ট বন্ধ করেছে। অনেক ধন্যবাদ।" }
+            { category: "imo", service: "ইমু রিকভারি", text: "ইমু আইডি হ্যাক হয়ে টাকা চাওয়া হচ্ছিল। টিম খুব দ্রুত সমাধান করেছে।" }
         ];
 
-        const times = ["১ দিন আগে", "২ দিন আগে", "৩ দিন আগে", "৫ দিন আগে", "১ সপ্তাহ আগে", "১০ দিন আগে"];
+        const times = ["১ দিন আগে", "২ দিন আগে", "৩ দিন আগে", "৫ দিন আগে", "১ সপ্তাহ আগে"];
 
         let generatedCount = 0;
         let currentFilter = 'all';
@@ -278,7 +262,6 @@
         function renderReviews(amount, filter = 'all') {
             const container = document.getElementById('reviewsContainer');
             let html = '';
-            
             for (let i = 0; i < amount; i++) {
                 if (generatedCount >= 50000) break;
                 let filtered = filter === 'all' ? reviewTemplates : reviewTemplates.filter(r => r.category === filter);
@@ -361,4 +344,4 @@
         };
     </script>
 </body>
-  </html>
+</html>

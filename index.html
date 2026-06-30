@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTH Review - লাইভ কাস্টমার ফিডব্যাক</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #00f5ff;
+            --accent: #a855f7;
+        }
+        
+        * { font-family: 'Inter', system-ui, sans-serif; }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #e0f2fe;
+            overflow-x: hidden;
+        }
+        
+        .hero-bg {
+            background: radial-gradient(circle at 30% 20%, rgba(0, 245, 255, 0.25) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.25) 0%, transparent 50%);
+        }
+        
+        .glass {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+        }
+        
+        .review-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .review-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .review-card:hover {
+            transform: translateY(-15px) scale(1.04);
+            box-shadow: 0 30px 60px -15px rgb(0 245 255 / 0.25);
+            border-color: #00f5ff;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 25px rgb(0 245 255), 0 0 50px rgb(168 85 247);
+        }
+        
+        .golden-star {
+            color: #fbbf24;
+            filter: drop-shadow(0 0 10px #fbbf24);
+        }
+        
+        .avatar {
+            background: linear-gradient(135deg, #22d3ee, #a855f7);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.6);
+            transition: all 0.4s ease;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .review-card:hover .avatar {
+            transform: scale(1.15) rotate(12deg);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #00f5ff, #a855f7, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        .modal {
+            animation: modalPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(0.7) translateY(50px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        
+        .glow-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glow-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-25deg);
+            animation: shine 4s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-150%) skewX(-25deg); }
+            100% { transform: translateX(400%) skewX(-25deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-20">
+
+    <!-- Hero -->
+    <div id="hero" class="hero-bg pt-20 pb-16 relative">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-3 bg-white/5 backdrop-blur-md px-6 py-2 rounded-3xl border border-white/10 mb-6">
+                <i class="fa-solid fa-shield-halved text-cyan-400 text-2xl"></i>
+                <span class="font-bold text-xl tracking-widest text-white">CYBER TEAM HELP</span>
+            </div>
+            
+            <h1 class="text-6xl md:text-7xl font-bold mb-6 neon-text">
+                CTH Review
+            </h1>
+            <p class="text-2xl md:text-3xl text-sky-200 font-light max-w-2xl mx-auto">
+                সত্যিকারের গ্রাহকদের অভিজ্ঞতা • লাইভ ড্যাশবোর্ড
+            </p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 -mt-8 relative z-10">
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-3 justify-center mb-12">
+            <button onclick="filterReviews('all')" class="filter-btn active px-7 py-3 rounded-3xl glass text-sm font-medium transition-all">সব রিভিউ</button>
+            <button onclick="filterReviews('fb')" class="filter-btn px-7 py-3 rounded-3xl glass text-sm font-medium transition-all">ফেসবুক</button>
+            <button onclick="filterReviews('insta')" class="filter-btn px-7 py-3 rounded-3xl glass text-sm font-medium transition-all">ইনস্টাগ্রাম</button>
+            <button onclick="filterReviews('wa')" class="filter-btn px-7 py-3 rounded-3xl glass text-sm font-medium transition-all">হোয়াটসঅ্যাপ</button>
+            <button onclick="filterReviews('imo')" class="filter-btn px-7 py-3 rounded-3xl glass text-sm font-medium transition-all">ইমু</button>
+        </div>
+
+        <!-- Reviews Grid -->
+        <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+        <!-- Load More -->
+        <div class="text-center mt-16">
+            <button id="loadMoreBtn" 
+                    onclick="loadMoreReviews()"
+                    class="glow-btn px-12 py-6 bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-semibold text-lg rounded-3xl flex items-center gap-4 mx-auto transition-all shadow-2xl shadow-cyan-500/40">
+                <i id="btnIcon" class="fa-solid fa-arrow-down"></i>
+                <span id="btnText">আরও রিভিউ দেখুন</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-24 py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold mb-2 gradient-text">CTH Review</h2>
+                <p class="text-slate-400 mb-8">সাইবার সমস্যার বিশ্বস্ত সমাধান</p>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                    <a href="https://wa.me/8801721863816" target="_blank"
+                       class="flex items-center gap-3 bg-green-600 hover:bg-green-500 transition-all px-8 py-4 rounded-2xl text-lg font-medium">
+                        <i class="fa-brands fa-whatsapp text-3xl"></i>
+                        <div>
+                            <span class="block text-sm opacity-75">হোয়াটসঅ্যাপ</span>
+                            <span class="text-sm">যোগাযোগ করুন</span>
+                        </div>
+                    </a>
+                    
+                    <a href="https://www.facebook.com/share/19232SUFuj/" target="_blank"
+                       class="flex items-center gap-3 bg-blue-600 hover:bg-blue-500 transition-all px-8 py-4 rounded-2xl text-lg font-medium">
+                        <i class="fa-brands fa-facebook text-3xl"></i>
+                        <div>
+                            <span class="block text-sm opacity-75">ফেসবুক পেজ</span>
+                            <span class="text-sm">ভিজিট করুন</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="mt-12 text-slate-400">
+                    <p class="text-lg">Developer: <span class="gradient-text">SHADOW JOKER</span></p>
+                    <p class="mt-1">Admin: <span class="text-cyan-400">Jisan Ahmed</span></p>
+                </div>
+
+                <div class="mt-8 text-xs text-slate-500">
+                    © ২০২০ - ২০২৬ | সর্বস্বত্ব সংরক্ষিত
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-xl flex items-center justify-center z-50">
+        <div class="modal glass max-w-lg w-full mx-4 rounded-3xl p-8">
+            <div class="flex justify-end mb-4">
+                <button onclick="closeModal()" class="text-4xl text-slate-400 hover:text-white">×</button>
+            </div>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // নাম লিস্ট (বাংলা ও ইংরেজি মিক্সড)
+        const nameList = [
+            { display: "আরিফ আহমেদ", emoji: "👨‍🦱" },
+            { display: "Sadia Khan", emoji: "👩‍🦰" },
+            { display: "মাহমুদ হোসেন", emoji: "🧔" },
+            { display: "Nusrat Jahan", emoji: "👩🏻" },
+            { display: "রাহাত চৌধুরী", emoji: "👨🏽‍🦱" },
+            { display: "Tania Islam", emoji: "👩‍🦱" },
+            { display: "ফাহিম রহমান", emoji: "👨🏻‍🦰" },
+            { display: "Sumaiya Akter", emoji: "👩🏽" },
+            { display: "ইমতিয়াজ মিয়া", emoji: "👨‍🦰" },
+            { display: "Naznin Sultana", emoji: "👩‍🦳" },
+            { display: "রাকিব শেখ", emoji: "👨🏾" },
+            { display: "Afia Mallik", emoji: "👩🏻‍🦰" },
+            { display: "সাইফুল ইসলাম", emoji: "🧔🏽" },
+            { display: "Meherin Tasnim", emoji: "👩🏼" }
+        ];
+
+        const reviewTemplates = [
+            { category: "fb", service: "ফেসবুক রিকভারি", text: "আমার হ্যাক হওয়া ফেসবুক আইডি ৩ দিনের মধ্যে পুরোপুরি ফিরে পেয়েছি। সাপোর্ট টিম অসাধারণ।" },
+            { category: "fb", service: "ফেসবুক আইডি ডিজেবল উদ্ধার", text: "ফেসবুক আইডি ডিজেবল হয়ে গিয়েছিল। CTH টিম খুব দ্রুত উদ্ধার করে দিয়েছে। অসাধারণ কাজ।" },
+            { category: "fb", service: "ফেসবুক আইডি অ্যাক্সেস", text: "ফেসবুক আইডিতে অ্যাক্সেস হারিয়ে ফেলেছিলাম। টিম সফলভাবে অ্যাক্সেস ফিরিয়ে দিয়েছে।" },
+            { category: "insta", service: "ইনস্টাগ্রাম রিকভারি", text: "ইনস্টাগ্রাম অ্যাকাউন্ট ডিজেবল হয়ে গিয়েছিল। মাত্র ২৪ ঘণ্টায় ফিরে পেয়েছি।" },
+            { category: "wa", service: "হোয়াটসঅ্যাপ অ্যাকাউন্ট অ্যাক্সেস", text: "হোয়াটসঅ্যাপ অ্যাকাউন্টে অ্যাক্সেস হারিয়ে ফেলেছিলাম। খুব সুন্দরভাবে ফিরিয়ে দিয়েছে।" },
+            { category: "wa", service: "হোয়াটসঅ্যাপ সাপোর্ট", text: "হোয়াটসঅ্যাপ লগইন সমস্যা সমাধান করে দিয়েছে। অসাধারণ সার্ভিস।" },
+            { category: "imo", service: "ইমু অ্যাকাউন্ট অ্যাক্সেস", text: "ইমু অ্যাকাউন্ট হ্যাক হয়ে গিয়েছিল। দ্রুত অ্যাক্সেস উদ্ধার করে দিয়েছে।" },
+            { category: "imo", service: "ইমু রিকভারি", text: "ইমু আইডি হ্যাক হয়ে টাকা চাওয়া হচ্ছিল। টিম খুব দ্রুত সমাধান করেছে।" },
+            { category: "fb", service: "হ্যারাসমেন্ট রিমুভ", text: "ফেক আইডি থেকে হ্যারাসমেন্ট বন্ধ করেছে। অনেক ধন্যবাদ।" }
+        ];
+
+        const times = ["১ দিন আগে", "২ দিন আগে", "৩ দিন আগে", "৫ দিন আগে", "১ সপ্তাহ আগে", "১০ দিন আগে"];
+
+        let generatedCount = 0;
+        let currentFilter = 'all';
+        const reviewsPerLoad = 9;
+
+        function createReviewCard(review) {
+            const person = nameList[Math.floor(Math.random() * nameList.length)];
+            const time = times[Math.floor(Math.random() * times.length)];
+
+            return `
+                <div class="review-card glass rounded-3xl p-8 border border-white/10 cursor-pointer" onclick="showReviewModal('\( {person.display}', ' \){review.service}', '${review.text}')">
+                    <div class="flex items-start justify-between mb-6">
+                        <div class="flex items-center gap-4">
+                            <div class="avatar w-14 h-14 rounded-2xl shadow-inner">
+                                ${person.emoji}
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-xl tracking-tight">${person.display}</h4>
+                                <p class="text-cyan-400 text-sm mt-1">${review.service}</p>
+                            </div>
+                        </div>
+                        <div class="text-4xl golden-star">★★★★★</div>
+                    </div>
+                    
+                    <p class="text-slate-200 leading-relaxed text-[15.5px] mb-8 line-clamp-4">
+                        "${review.text}"
+                    </p>
+                    
+                    <div class="flex items-center justify-between text-xs pt-6 border-t border-white/10">
+                        <div class="flex items-center gap-2 text-emerald-400">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span class="font-medium">ভেরিফাইড ক্লায়েন্ট</span>
+                        </div>
+                        <span class="text-slate-400">${time}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderReviews(amount, filter = 'all') {
+            const container = document.getElementById('reviewsContainer');
+            let html = '';
+            
+            for (let i = 0; i < amount; i++) {
+                if (generatedCount >= 50000) break;
+                let filtered = filter === 'all' ? reviewTemplates : reviewTemplates.filter(r => r.category === filter);
+                const review = filtered[Math.floor(Math.random() * filtered.length)];
+                html += createReviewCard(review);
+                generatedCount++;
+            }
+            container.innerHTML += html;
+            setTimeout(observeCards, 100);
+        }
+
+        function observeCards() {
+            const cards = document.querySelectorAll('.review-card:not(.visible)');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, i) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => entry.target.classList.add('visible'), i * 70);
+                    }
+                });
+            }, { threshold: 0.1 });
+            cards.forEach(card => observer.observe(card));
+        }
+
+        function loadMoreReviews() {
+            const btn = document.getElementById('loadMoreBtn');
+            const icon = document.getElementById('btnIcon');
+            const text = document.getElementById('btnText');
+            
+            btn.disabled = true;
+            icon.className = "fa-solid fa-spinner fa-spin";
+            text.textContent = "লোড হচ্ছে...";
+            
+            setTimeout(() => {
+                renderReviews(reviewsPerLoad, currentFilter);
+                btn.disabled = false;
+                icon.className = "fa-solid fa-arrow-down";
+                text.textContent = "আরও রিভিউ দেখুন";
+            }, 1100);
+        }
+
+        function filterReviews(filter) {
+            currentFilter = filter;
+            document.getElementById('reviewsContainer').innerHTML = '';
+            generatedCount = 0;
+            renderReviews(12, filter);
+        }
+
+        function showReviewModal(name, service, text) {
+            const modal = document.getElementById('reviewModal');
+            const content = document.getElementById('modalContent');
+            
+            content.innerHTML = `
+                <div class="text-center mb-6">
+                    <div class="text-6xl mb-4 golden-star">★★★★★</div>
+                    <h3 class="text-2xl font-bold">${name}</h3>
+                    <p class="text-cyan-400 mt-2">${service}</p>
+                </div>
+                <p class="text-lg leading-relaxed text-slate-100">"${text}"</p>
+                <div class="mt-10 text-xs text-slate-400 text-center">— সত্যিকারের ক্লায়েন্ট অভিজ্ঞতা • CTH</div>
+            `;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('reviewModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            const hero = document.getElementById('hero');
+            const x = (e.clientX / window.innerWidth) * 25 - 12.5;
+            const y = (e.clientY / window.innerHeight) * 18 - 9;
+            hero.style.transform = `perspective(1200px) rotateX(\( {-y}deg) rotateY( \){x}deg)`;
+        });
+
+        window.onload = () => {
+            renderReviews(12);
+        };
+    </script>
+</body>
+  </html>

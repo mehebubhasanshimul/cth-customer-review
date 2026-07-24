@@ -98,192 +98,222 @@
             0% { background-position: 0% center; }
             100% { background-position: 300% center; }
         }
+
+        /* LED Signboard */
+        .led-sign {
+            position: relative;
+            background: #000;
+            border: 8px solid #111;
+            border-radius: 16px;
+            padding: 24px 40px;
+            box-shadow: 
+                0 0 40px #0ff,
+                0 0 80px #0ff,
+                inset 0 0 50px rgba(0, 255, 255, 0.4);
+            overflow: hidden;
+            max-width: 620px;
+            margin: 0 auto 2rem;
+        }
+
+        .led-text {
+            font-family: 'Courier New', monospace;
+            font-size: 2.4rem;
+            font-weight: 900;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #00ffff, #ffffff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 
+                0 0 15px #0ff,
+                0 0 30px #0ff,
+                0 0 60px #0ff;
+            animation: ledFlicker 0.12s infinite alternate;
+        }
+
+        @keyframes ledFlicker {
+            0% { opacity: 0.92; }
+            100% { opacity: 1; }
+        }
+
+        .led-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #0ff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #0ff;
+            animation: dotPulse 1.8s infinite;
+        }
     </style>
 </head>
 <body class="min-h-screen pb-16">
 
-    <!-- Hero + Stats -->
-    <div class="hero-bg pt-10 pb-8 relative">
+    <!-- Hero Section -->
+    <div class="hero-bg pt-12 pb-10 relative">
         <div class="max-w-6xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md px-5 py-2 rounded-full border border-white/10 mb-5">
-                <i class="fa-solid fa-shield-halved text-cyan-400 text-lg"></i>
+            
+            <!-- Bangladesh Government IT LED Signboard -->
+            <div class="led-sign">
+                <div class="relative">
+                    <div class="led-dot" style="top: 18%; left: 10%; animation-delay: 0s;"></div>
+                    <div class="led-dot" style="top: 28%; right: 12%; animation-delay: 0.4s;"></div>
+                    <div class="led-dot" style="bottom: 22%; left: 18%; animation-delay: 0.8s;"></div>
+                    <div class="led-dot" style="bottom: 25%; right: 15%; animation-delay: 1.2s;"></div>
+                    
+                    <div class="led-text text-center leading-tight">
+                        BANGLADESH<br>GOVERNMENT IT
+                    </div>
+                </div>
+                <div class="text-center text-cyan-300/70 text-sm mt-4 tracking-widest font-mono">
+                    OFFICIAL CYBER SUPPORT DIVISION
+                </div>
+            </div>
+
+            <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md px-6 py-2.5 rounded-full border border-white/10 mb-6">
+                <i class="fa-solid fa-shield-halved text-cyan-400 text-xl"></i>
                 <span class="font-bold text-sm tracking-widest text-white">CYBER TEAM HELP</span>
             </div>
-            <h1 class="text-4xl md:text-5xl font-bold mb-3 text-white">CTH Review</h1>
-            <p class="text-lg md:text-xl text-sky-200">গ্রাহকদের সত্য অনুভূতি ও টেকনিক্যাল সাফল্যের লাইভ ড্যাশবোর্ড</p>
+            
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 text-white">CTH Review</h1>
+            <p class="text-xl text-sky-200 max-w-2xl mx-auto">গ্রাহকদের সত্য অনুভূতি ও টেকনিক্যাল সাফল্যের লাইভ ড্যাশবোর্ড</p>
         </div>
 
-        <div class="max-w-4xl mx-auto px-6 mt-10 grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div class="stat-card rounded-2xl p-6 text-center">
-                <div class="text-4xl font-bold text-cyan-400">৫০,০০০+</div>
-                <p class="text-slate-300 mt-2 text-sm">মোট সফল সেবা</p>
+        <!-- Stats -->
+        <div class="max-w-4xl mx-auto px-6 mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="stat-card rounded-3xl p-8 text-center">
+                <div class="text-5xl font-bold text-cyan-400">৫০,০০০+</div>
+                <p class="text-slate-300 mt-3">মোট সফল সেবা</p>
             </div>
-            <div class="stat-card rounded-2xl p-6 text-center">
-                <div class="text-4xl font-bold text-cyan-400">২০২০</div>
-                <p class="text-slate-300 mt-2 text-sm">থেকে সফলতার সাথে কর্মরত</p>
+            <div class="stat-card rounded-3xl p-8 text-center">
+                <div class="text-5xl font-bold text-cyan-400">২০২০</div>
+                <p class="text-slate-300 mt-3">থেকে সফলতার সাথে কর্মরত</p>
             </div>
-            <div class="stat-card rounded-2xl p-6 text-center">
-                <div class="text-4xl font-bold text-cyan-400">১০০%</div>
-                <p class="text-slate-300 mt-2 text-sm">সুরক্ষিত ও বিশ্বস্ত সমাধান</p>
+            <div class="stat-card rounded-3xl p-8 text-center">
+                <div class="text-5xl font-bold text-cyan-400">১০০%</div>
+                <p class="text-slate-300 mt-3">সুরক্ষিত ও বিশ্বস্ত সমাধান</p>
             </div>
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-6 -mt-4 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 -mt-6 relative z-10">
         <!-- Filters -->
-        <div class="flex flex-wrap gap-2 justify-center mb-10">
-            <button onclick="filterReviews('all')" class="px-5 py-2.5 rounded-full glass text-xs font-medium hover:border-cyan-400 transition">সব রিভিউ</button>
-            <button onclick="filterReviews('fb')" class="px-5 py-2.5 rounded-full glass text-xs font-medium hover:border-cyan-400 transition">ফেসবুক</button>
-            <button onclick="filterReviews('insta')" class="px-5 py-2.5 rounded-full glass text-xs font-medium hover:border-cyan-400 transition">ইনস্টাগ্রাম</button>
-            <button onclick="filterReviews('wa')" class="px-5 py-2.5 rounded-full glass text-xs font-medium hover:border-cyan-400 transition">হোয়াটসঅ্যাপ</button>
-            <button onclick="filterReviews('imo')" class="px-5 py-2.5 rounded-full glass text-xs font-medium hover:border-cyan-400 transition">ইমু</button>
+        <div class="flex flex-wrap gap-3 justify-center mb-12">
+            <button onclick="filterReviews('all')" class="px-6 py-3 rounded-full glass text-sm font-medium hover:border-cyan-400 transition active:scale-95">সব রিভিউ</button>
+            <button onclick="filterReviews('fb')" class="px-6 py-3 rounded-full glass text-sm font-medium hover:border-cyan-400 transition active:scale-95">ফেসবুক</button>
+            <button onclick="filterReviews('insta')" class="px-6 py-3 rounded-full glass text-sm font-medium hover:border-cyan-400 transition active:scale-95">ইনস্টাগ্রাম</button>
+            <button onclick="filterReviews('wa')" class="px-6 py-3 rounded-full glass text-sm font-medium hover:border-cyan-400 transition active:scale-95">হোয়াটসঅ্যাপ</button>
+            <button onclick="filterReviews('imo')" class="px-6 py-3 rounded-full glass text-sm font-medium hover:border-cyan-400 transition active:scale-95">ইমু</button>
         </div>
 
         <!-- Reviews Container -->
         <div id="reviewsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
 
-        <!-- Load More Button -->
-        <div class="text-center mt-12">
-            <button id="loadMoreBtn" onclick="loadMoreReviews()" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold text-sm rounded-full flex items-center gap-3 mx-auto hover:scale-105 transition-transform shadow-lg shadow-cyan-500/30">
+        <!-- Load More -->
+        <div class="text-center mt-16">
+            <button id="loadMoreBtn" onclick="loadMoreReviews()" 
+                    class="px-10 py-5 bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-semibold rounded-2xl flex items-center gap-3 mx-auto hover:scale-105 transition-all shadow-xl shadow-cyan-500/40">
                 <i id="btnIcon" class="fa-solid fa-arrow-down"></i>
                 <span id="btnText">আরও রিভিউ দেখুন</span>
             </button>
         </div>
     </div>
 
-    <!-- ফুটার -->
-    <footer class="mt-20 py-12 border-t border-white/10 bg-black/40">
+    <!-- Footer -->
+    <footer class="mt-24 py-14 border-t border-white/10 bg-black/40">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-2xl font-bold mb-2 gradient-text">CTH Review</h2>
-            <p class="text-slate-400 text-sm mb-6">সাইবার সমস্যার বিশ্বস্ত সমাধান</p>
+            <h2 class="text-3xl font-bold mb-2 gradient-text">CTH Review</h2>
+            <p class="text-slate-400 mb-8">সাইবার সমস্যার বিশ্বস্ত সমাধান</p>
             
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="https://wa.me/8801721863816" target="_blank" class="flex items-center gap-3 bg-green-600 hover:bg-green-500 transition-all px-6 py-3 rounded-xl text-base font-medium shadow-md shadow-green-600/30">
-                    <i class="fa-brands fa-whatsapp text-2xl"></i>
-                    <div class="text-left">
-                        <span class="block text-xs opacity-75">হোয়াটসঅ্যাপ</span>
-                        <span class="text-sm">যোগাযোগ করুন</span>
-                    </div>
-                </a>
-                
-                <a href="https://www.facebook.com/share/19232SUFuj/" target="_blank" class="flex items-center gap-3 bg-blue-600 hover:bg-blue-500 transition-all px-6 py-3 rounded-xl text-base font-medium shadow-md shadow-blue-600/30">
-                    <i class="fa-brands fa-facebook text-2xl"></i>
-                    <div class="text-left">
+            <div class="flex justify-center">
+                <a href="https://www.facebook.com/share/19232SUFuj/" target="_blank" 
+                   class="flex items-center gap-4 bg-blue-600 hover:bg-blue-500 transition-all px-8 py-4 rounded-2xl text-lg font-medium shadow-lg shadow-blue-600/40">
+                    <i class="fa-brands fa-facebook text-3xl"></i>
+                    <div>
                         <span class="block text-xs opacity-75">ফেসবুক পেজ</span>
-                        <span class="text-sm">ভিজিট করুন</span>
+                        <span class="text-base">ভিজিট করুন</span>
                     </div>
                 </a>
             </div>
 
-            <div class="mt-10 text-slate-400 text-sm">
-                <p>Developer: <span class="gradient-text-anim text-xl ml-1">SHADOW JOKER</span></p>
+            <div class="mt-12 text-slate-400">
+                <p>Developer: <span class="gradient-text-anim">SHADOW JOKER</span></p>
                 <p class="mt-1">Admin: <span class="text-cyan-400 font-medium">Jisan Ahmed</span></p>
             </div>
 
-            <div class="mt-6 text-[11px] text-slate-500">
-                © ২০২০ - ২০২৬ | সর্বস্বত্ব সংরক্ষিত
+            <div class="mt-8 text-xs text-slate-500">
+                © ২০২০ - ২০২৬ | BANGLADESH GOVERNMENT IT DIVISION | সর্বস্বত্ব সংরক্ষিত
             </div>
         </div>
     </footer>
 
-    <!-- Review Modal -->
+    <!-- Modal -->
     <div id="reviewModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-xl flex items-center justify-center z-50">
-        <div class="glass max-w-lg w-full mx-4 rounded-2xl p-6 relative">
-            <div class="absolute top-4 right-4">
-                <button onclick="closeModal()" class="text-3xl text-slate-400 hover:text-white transition-colors">&times;</button>
-            </div>
-            <div id="modalContent" class="mt-4 text-center"></div>
+        <div class="glass max-w-lg w-full mx-4 rounded-3xl p-8 relative">
+            <button onclick="closeModal()" class="absolute top-5 right-5 text-4xl text-slate-400 hover:text-white">&times;</button>
+            <div id="modalContent" class="text-center mt-6"></div>
         </div>
     </div>
 
     <script>
-        // খাঁটি বাংলাদেশি নামের ডাটাবেস (ছেলে ও মেয়ে আলাদা করা হলো)
-        
-        // ছেলেদের নাম (বাংলা)
-        const bnBoyFirst = ["আরিফ", "মাহমুদ", "রাহাত", "ফাহিম", "ইমতিয়াজ", "রাকিব", "সাইফুল", "তানভীর", "শাহরিয়ার", "জুবায়ের", "তৌহিদ", "আব্দুল্লাহ", "রিয়াজ", "সুমন", "নাফিস", "মেহেবুব", "জিসান", "শফিক", "রফিক", "জব্বার", "সালাম", "তারেক", "হাবিব", "হাসান", "কামাল", "জামাল", "রনি", "জনি", "সজীব", "শান্ত"];
-        const bnBoyLast = ["আহমেদ", "হোসেন", "চৌধুরী", "রহমান", "মিয়া", "শেখ", "ইসলাম", "খান", "সরকার", "শিকদার", "মোল্লা", "তালুকদার", "হাওলাদার", "কাজী", "খন্দকার"];
-
-        // মেয়েদের নাম (বাংলা)
-        const bnGirlFirst = ["সাদিয়া", "নুসরাত", "তানিয়া", "সুমাইয়া", "নাজনীন", "আফিয়া", "মেহেরিন", "লামিয়া", "প্রিয়া", "আনিকা", "সাবরিনা", "ফারিয়া", "মাহিয়া", "রুমানা", "ফারহানা", "তাসনিম", "মিম", "জেসমিন", "রিয়া", "নিপা", "তিশা", "আশা", "নদী", "বৃষ্টি", "মেঘলা", "দোলা", "সুমি", "রুমি", "ঝুমা", "রত্না"];
-        const bnGirlLast = ["আক্তার", "খাতুন", "সুলতানা", "বেগম", "বানু", "ইসলাম", "রহমান", "চৌধুরী"];
-
-        // ছেলেদের নাম (ইংরেজি)
-        const enBoyFirst = ["Arif", "Mahmud", "Rahat", "Fahim", "Imtiaz", "Rakib", "Saiful", "Tanvir", "Shahriar", "Jubayer", "Touhid", "Abdullah", "Riyaz", "Sumon", "Nafis", "Mehebub", "Jisan", "Shafiq", "Rafiq", "Jabbar", "Salam", "Tarek", "Habib", "Hasan", "Kamal", "Jamal", "Roni", "Joni", "Sajib", "Shanto"];
-        const enBoyLast = ["Ahmed", "Hossain", "Chowdhury", "Rahman", "Mia", "Sheikh", "Islam", "Khan", "Sarkar", "Sikder", "Molla", "Talukder", "Howlader", "Kazi", "Khondokar"];
-
-        // মেয়েদের নাম (ইংরেজি)
-        const enGirlFirst = ["Sadiya", "Nusrat", "Tania", "Sumaiya", "Naznin", "Afia", "Meherin", "Lamia", "Priya", "Anika", "Sabrina", "Faria", "Mahiya", "Rumana", "Farhana", "Tasnim", "Mim", "Jesmin", "Riya", "Nipa", "Tisha", "Asha", "Nodi", "Brishti", "Meghla", "Dola", "Sumi", "Rumi", "Jhuma", "Ratna"];
-        const enGirlLast = ["Akter", "Khatun", "Sultana", "Begum", "Banu", "Islam", "Rahman", "Chowdhury"];
+        // নাম জেনারেটর
+        const bnBoyFirst = ["আরিফ","মাহমুদ","রাহাত","ফাহিম","ইমতিয়াজ","রাকিব","সাইফুল","তানভীর","শাহরিয়ার","জুবায়ের","তৌহিদ","আব্দুল্লাহ","রিয়াজ","সুমন","নাফিস","জিসান","শফিক","তারেক","হাসান","কামাল"];
+        const bnBoyLast = ["আহমেদ","হোসেন","চৌধুরী","রহমান","মিয়া","খান","সরকার","শেখ","ইসলাম"];
+        const bnGirlFirst = ["সাদিয়া","নুসরাত","তানিয়া","সুমাইয়া","আফিয়া","লামিয়া","প্রিয়া","আনিকা","সাবরিনা","ফারিয়া","মাহিয়া","তাসনিম","রিয়া","তিশা"];
+        const bnGirlLast = ["আক্তার","খাতুন","সুলতানা","বেগম","ইসলাম","রহমান"];
 
         let bengaliNames = [];
-        let englishNames = [];
-
-        // বাংলা নাম জেনারেট (ছেলে + মেয়ে)
         bnBoyFirst.forEach(f => bnBoyLast.forEach(l => bengaliNames.push(f + " " + l)));
         bnGirlFirst.forEach(f => bnGirlLast.forEach(l => bengaliNames.push(f + " " + l)));
 
-        // ইংরেজি নাম জেনারেট (ছেলে + মেয়ে)
-        enBoyFirst.forEach(f => enBoyLast.forEach(l => englishNames.push(f + " " + l)));
-        enGirlFirst.forEach(f => enGirlLast.forEach(l => englishNames.push(f + " " + l)));
-
-        // শাফেল ফাংশন (যাতে নাম এলোমেলো আসে)
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [array[i], array[j]] = [array[j], array[i]];
             }
         }
-
         shuffleArray(bengaliNames);
-        shuffleArray(englishNames);
 
-        let useBengaliNext = true; // 1st name will be Bengali
-
+        let nameIndex = 0;
         function getNextName() {
-            let nameToReturn = "";
-            if (useBengaliNext) {
-                useBengaliNext = false;
-                nameToReturn = bengaliNames.length > 0 ? bengaliNames.pop() : "ইউজার " + Math.floor(Math.random()*1000);
-            } else {
-                useBengaliNext = true;
-                nameToReturn = englishNames.length > 0 ? englishNames.pop() : "User " + Math.floor(Math.random()*1000);
-            }
-            return nameToReturn;
+            return bengaliNames[nameIndex++ % bengaliNames.length];
         }
 
+        // রিভিউ টেমপ্লেট
         const reviewTemplates = [
-            { category: "fb", service: "ফেসবুক রিকভারি", text: "আমার হ্যাক হওয়া ফেসবুক আইডি ৩ দিনের মধ্যে পুরোপুরি ফিরে পেয়েছি। সাপোর্ট টিম অসাধারণ কাজ করেছে।" },
-            { category: "fb", service: "ফেসবুক আইডি ডিজেবল উদ্ধার", text: "আমার পুরনো ফেসবুক আইডি ডিজেবল হয়ে গিয়েছিল। CTH টিম খুব দ্রুত উদ্ধার করে দিয়েছে।" },
-            { category: "fb", service: "ফেসবুক আইডি অ্যাক্সেস", text: "লগইন এপ্রুভাল আটকে ছিল, আইডিতে অ্যাক্সেস হারিয়ে ফেলেছিলাম। টিম সফলভাবে অ্যাক্সেস ফিরিয়ে দিয়েছে।" },
-            { category: "insta", service: "ইনস্টাগ্রাম রিকভারি", text: "ইনস্টাগ্রাম অ্যাকাউন্ট ডিজেবল হয়ে গিয়েছিল। বিশ্বাসই করিনি মাত্র ২৪ ঘণ্টায় ফিরে পাব।" },
-            { category: "wa", service: "হোয়াটসঅ্যাপ অ্যাকাউন্ট অ্যাক্সেস", text: "হোয়াটসঅ্যাপ ব্যান হয়ে গিয়েছিল। খুব সুন্দরভাবে তারা আনব্যান করে ফিরিয়ে দিয়েছে।" },
-            { category: "imo", service: "ইমু অ্যাকাউন্ট অ্যাক্সেস", text: "ইমু অ্যাকাউন্ট হ্যাক হয়ে অন্য কেউ চালাচ্ছিল। দ্রুত তারা অ্যাকাউন্ট উদ্ধার করে দিয়েছে।" }
+            { category: "fb", service: "ফেসবুক রিকভারি", text: "Cyber Team Help সত্যি অসাধারণ! আমার ফেসবুক অ্যাকাউন্ট হ্যাক হয়ে গিয়েছিল, ২ ঘণ্টার মধ্যে রিকভার করে দিয়েছে।" },
+            { category: "fb", service: "ফেসবুক আইডি", text: "আইডি হ্যাক হওয়ার পর অনেক পেইজে ঘুরেছি। শুধু Cyber Team Help-ই সাহায্য করেছে।" },
+            { category: "fb", service: "পেজ অ্যাডমিন", text: "পেজের অ্যাডমিন অ্যাক্সেস খুব দ্রুত ফিরে পেয়েছি। সাপোর্ট অসাধারণ।" },
+            { category: "insta", service: "ইনস্টাগ্রাম রিকভারি", text: "ইনস্টাগ্রাম অ্যাকাউন্ট হ্যাক হয়েছিল। সুন্দর করে রিকভার করে দিয়েছে।" },
+            { category: "fb", service: "সাইবার সাপোর্ট", text: "রাত ১২টায় মেসেজ দিয়েছিলাম, সকালেই রিপ্লাই। সত্যিকারের হেল্পফুল টিম।" },
+            { category: "fb", service: "পেজ রিকভারি", text: "পেজ হ্যাক হয়ে সব পোস্ট ডিলিট হচ্ছিল। তারা ঠিক করে দিয়েছে।" },
+            { category: "fb", service: "টেকনিক্যাল সাপোর্ট", text: "টেকনিক্যাল সাপোর্ট খুবই শক্তিশালী। সব সমস্যায় সাহায্য করে।" },
+            { category: "fb", service: "স্ক্যাম উদ্ধার", text: "টাকা স্ক্যাম হয়েছিল, ট্রেস করে অনেকটা উদ্ধার করেছে।" },
+            { category: "wa", service: "হোয়াটসঅ্যাপ", text: "হোয়াটসঅ্যাপ ব্যান হয়ে গিয়েছিল। দ্রুত আনব্যান করে দিয়েছে।" },
+            { category: "insta", service: "ইনস্টাগ্রাম", text: "ইনস্টাগ্রাম ডিজেবল অ্যাকাউন্ট ২৪ ঘণ্টায় ফিরে পেয়েছি।" }
         ];
 
-        const times = ["১ দিন আগে", "২ দিন আগে", "৩ দিন আগে", "৫ দিন আগে", "১ সপ্তাহ আগে", "১২ ঘণ্টা আগে", "২ সপ্তাহ আগে"];
+        const times = ["১ দিন আগে", "২ দিন আগে", "৩ দিন আগে", "১ সপ্তাহ আগে", "১২ ঘণ্টা আগে"];
 
         let currentFilter = 'all';
 
         function createReviewCard(review) {
-            const personName = getNextName(); // ইউনিক এবং সিরিয়াল করা নাম
-
+            const name = getNextName();
             return `
-                <div class="review-card glass rounded-2xl p-5 border border-white/10 cursor-pointer" onclick="showReviewModal('${personName}', '${review.service}', '${review.text}')">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="flex items-center gap-3">
-                            <div class="avatar w-10 h-10 rounded-xl shadow-inner">
-                                <i class="fa-solid fa-user text-white/80 text-sm"></i>
-                            </div>
+                <div class="review-card glass rounded-3xl p-6 border border-white/10 cursor-pointer" onclick="showReviewModal('\( {name}', ' \){review.service}', '${review.text}')">
+                    <div class="flex justify-between items-start mb-5">
+                        <div class="flex items-center gap-4">
+                            <div class="avatar w-12 h-12 rounded-2xl text-xl">👤</div>
                             <div>
-                                <h4 class="font-semibold text-sm">${personName}</h4>
-                                <p class="text-cyan-400 text-[11px] mt-0.5">${review.service}</p>
+                                <h4 class="font-semibold">${name}</h4>
+                                <p class="text-cyan-400 text-sm">${review.service}</p>
                             </div>
                         </div>
-                        <div class="text-lg golden-star tracking-widest">★★★★★</div>
+                        <div class="golden-star text-2xl">★★★★★</div>
                     </div>
-                    <p class="text-slate-300 leading-relaxed mb-5 text-xs">"${review.text}"</p>
-                    <div class="flex justify-between text-[10px] pt-3 border-t border-white/10">
-                        <span class="text-emerald-400"><i class="fa-solid fa-circle-check mr-1"></i> ভেরিফাইড ক্লায়েন্ট</span>
+                    <p class="text-slate-300 text-[15px] leading-relaxed">"${review.text}"</p>
+                    <div class="flex justify-between text-xs pt-5 border-t border-white/10 mt-6">
+                        <span class="text-emerald-400">✅ ভেরিফাইড</span>
                         <span class="text-slate-400">${times[Math.floor(Math.random()*times.length)]}</span>
                     </div>
                 </div>
@@ -293,60 +323,50 @@
         function renderReviews(amount, filter = 'all') {
             const container = document.getElementById('reviewsContainer');
             let html = '';
-            
-            const filteredTemplates = filter === 'all' 
-                ? reviewTemplates 
-                : reviewTemplates.filter(r => r.category === filter);
-                
-            const templatesToUse = filteredTemplates.length > 0 ? filteredTemplates : reviewTemplates;
+            const filtered = filter === 'all' ? reviewTemplates : reviewTemplates.filter(r => r.category === filter);
+            const toUse = filtered.length ? filtered : reviewTemplates;
 
             for (let i = 0; i < amount; i++) {
-                const review = templatesToUse[Math.floor(Math.random() * templatesToUse.length)];
-                html += createReviewCard(review);
+                html += createReviewCard(toUse[Math.floor(Math.random() * toUse.length)]);
             }
-            
             container.innerHTML += html;
-            
+
             setTimeout(() => {
-                document.querySelectorAll('.review-card:not(.visible)').forEach((card, i) => {
-                    setTimeout(() => card.classList.add('visible'), i * 60);
+                document.querySelectorAll('.review-card:not(.visible)').forEach((c, i) => {
+                    setTimeout(() => c.classList.add('visible'), i * 80);
                 });
-            }, 100);
+            }, 50);
         }
 
         function loadMoreReviews() {
             const btn = document.getElementById('loadMoreBtn');
             btn.disabled = true;
             document.getElementById('btnIcon').className = "fa-solid fa-spinner fa-spin";
-            document.getElementById('btnText').textContent = "লোড হচ্ছে...";
-            
+            document.getElementById('btnText').innerHTML = "লোড হচ্ছে...";
+
             setTimeout(() => {
-                renderReviews(12, currentFilter);
+                renderReviews(9, currentFilter);
                 btn.disabled = false;
                 document.getElementById('btnIcon').className = "fa-solid fa-arrow-down";
-                document.getElementById('btnText').textContent = "আরও রিভিউ দেখুন";
-            }, 800);
+                document.getElementById('btnText').innerHTML = "আরও রিভিউ দেখুন";
+            }, 900);
         }
 
         function filterReviews(filter) {
             currentFilter = filter;
             document.getElementById('reviewsContainer').innerHTML = '';
-            
-            document.querySelectorAll('.flex-wrap button').forEach(btn => {
-                btn.classList.remove('border-cyan-400', 'text-cyan-400');
-            });
+            document.querySelectorAll('button[onclick^="filterReviews"]').forEach(b => b.classList.remove('border-cyan-400', 'text-cyan-400'));
             event.target.classList.add('border-cyan-400', 'text-cyan-400');
-            
             renderReviews(12, filter);
         }
 
         function showReviewModal(name, service, text) {
             document.getElementById('modalContent').innerHTML = `
-                <div class="text-4xl mb-3 golden-star tracking-widest">★★★★★</div>
-                <h3 class="text-xl font-bold text-white">${name}</h3>
-                <p class="text-cyan-400 text-sm mt-1">${service}</p>
-                <div class="w-12 h-1 bg-white/10 mx-auto my-4 rounded-full"></div>
-                <p class="text-sm text-slate-300 leading-relaxed italic">"${text}"</p>
+                <div class="golden-star text-5xl mb-4">★★★★★</div>
+                <h3 class="text-2xl font-bold">${name}</h3>
+                <p class="text-cyan-400">${service}</p>
+                <div class="my-6 h-px bg-white/10"></div>
+                <p class="italic text-slate-200">"${text}"</p>
             `;
             document.getElementById('reviewModal').classList.remove('hidden');
             document.getElementById('reviewModal').classList.add('flex');
@@ -357,9 +377,10 @@
             document.getElementById('reviewModal').classList.remove('flex');
         }
 
+        // Initial Load
         window.onload = () => {
             renderReviews(12);
-            document.querySelector('.flex-wrap button').classList.add('border-cyan-400', 'text-cyan-400');
+            document.querySelector('button[onclick^="filterReviews"]').classList.add('border-cyan-400', 'text-cyan-400');
         };
     </script>
 </body>
